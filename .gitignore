@@ -213,3 +213,10 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+/.gradle/
+/build/
+/builds/
+/fb/
+/libs/
+symlink_libs_damn.bat
