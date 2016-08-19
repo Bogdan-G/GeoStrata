@@ -99,8 +99,8 @@ public class BlockVent extends Block/* implements MinerBlock, EnvironmentalHeatS
 	public void registerBlockIcons(IIconRegister ico) {
 		for (int i = 0; i < icons.length; i++) {
 			VentType v = VentType.list[i];
-			icons[i] = ico.registerIcon("geostrata:vent/"+v.name().toLowerCase()+"_top");
-			internal[i] = ico.registerIcon("geostrata:vent/"+v.name().toLowerCase()+"_inside");
+			icons[i] = ico.registerIcon("geostrata:vent/"+v.name().toLowerCase(java.util.Locale.ENGLISH)+"_top");
+			internal[i] = ico.registerIcon("geostrata:vent/"+v.name().toLowerCase(java.util.Locale.ENGLISH)+"_inside");
 		}
 		//inactive = ico.registerIcon("geostrata:vent/inactive");
 	}
@@ -164,7 +164,7 @@ public class BlockVent extends Block/* implements MinerBlock, EnvironmentalHeatS
 
 		private int activeTimer = 0;
 		private VentType type;
-		private static final Random rand = new Random();
+		private static final Random rand = new org.bogdang.modifications.random.XSTR();
 
 		private void activate() {
 			activeTimer = 40+rand.nextInt(600);
@@ -284,14 +284,14 @@ public class BlockVent extends Block/* implements MinerBlock, EnvironmentalHeatS
 			if (p != null) {
 				int n = p == ReikaParticleHelper.FLAME ? 3 : p == ReikaParticleHelper.RAIN ? 8 : 1;
 				for (int i = 0; i < n; i++) {
-					double px = xCoord+rand.nextDouble();
-					double py = yCoord+0.5+rand.nextDouble();//+rand.nextDouble()*3;
-					double pz = zCoord+rand.nextDouble();
+					double px = xCoord+rand.nextFloat();
+					double py = yCoord+0.5+rand.nextFloat();//+rand.nextFloat()*3;
+					double pz = zCoord+rand.nextFloat();
 					if (p == ReikaParticleHelper.MOBSPELL || p == ReikaParticleHelper.LAVA || p == ReikaParticleHelper.RAIN)
-						py += rand.nextDouble()*2;
+						py += rand.nextFloat()*2;
 					double vx = 0;
 					double vz = 0;
-					double vy = 0.25+rand.nextDouble()/2;
+					double vy = 0.25+rand.nextFloat()/2;
 					//p.spawnAt(worldObj, px, py, pz);
 					worldObj.spawnParticle(p.name, px, py, pz, vx, vy, vz);
 				}

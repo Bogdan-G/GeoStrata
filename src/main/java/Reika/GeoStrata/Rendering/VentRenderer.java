@@ -26,6 +26,7 @@ public class VentRenderer implements ISimpleBlockRenderingHandler {
 	@Override
 	public void renderInventoryBlock(Block b, int metadata, int modelId, RenderBlocks rb) {
 		Tessellator tessellator = Tessellator.instance;
+		GL11.glPushMatrix();
 
 		rb.renderMaxX = 1;
 		rb.renderMinY = 0;
@@ -73,11 +74,13 @@ public class VentRenderer implements ISimpleBlockRenderingHandler {
 		tessellator.draw();
 
 		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+		GL11.glPopMatrix();
 	}
 
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block b, int modelId, RenderBlocks rb) {
 		Tessellator v5 = Tessellator.instance;
+		GL11.glPushMatrix();
 		int meta = world.getBlockMetadata(x, y, z);
 		rb.renderStandardBlockWithAmbientOcclusion(b, x, y, z, 1, 1, 1);
 		VentType vent = VentType.list[meta];
@@ -90,6 +93,7 @@ public class VentRenderer implements ISimpleBlockRenderingHandler {
 		}
 		v5.setColorOpaque_F(255, 255, 255);
 		rb.renderFaceYPos(b, x, y-0.002, z, ico);
+		GL11.glPopMatrix();
 		return true;
 	}
 

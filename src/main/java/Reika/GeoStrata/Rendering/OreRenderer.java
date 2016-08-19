@@ -37,7 +37,7 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class OreRenderer implements ISimpleBlockRenderingHandler {
 
-	private static final Random rand = new Random();
+	private static final Random rand = new org.bogdang.modifications.random.XSTR();
 
 	//private static final EnumMap<ModOreList, ArrayList<IIcon>> modOreIcons = new EnumMap(ModOreList.class);
 	//private static final EnumMap<ReikaOreHelper, ArrayList<IIcon>> oreIcons = new EnumMap(ReikaOreHelper.class);
@@ -45,9 +45,9 @@ public class OreRenderer implements ISimpleBlockRenderingHandler {
 
 	@SuppressWarnings("unused")
 	public static void regenIcons(TextureStitchEvent.Pre evt) {
-		if (true)
+		//if (true)
 			return;
-		IIcon stone = Blocks.stone.getIcon(0, 0);
+		/*IIcon stone = Blocks.stone.getIcon(0, 0);
 		for (int i = 0; i < ReikaOreHelper.oreList.length; i++) {
 			ReikaOreHelper ore = ReikaOreHelper.oreList[i];
 			if (ore.canGenerateIn(Blocks.stone)) {
@@ -60,7 +60,7 @@ public class OreRenderer implements ISimpleBlockRenderingHandler {
 						Block b = Block.getBlockFromItem(is.getItem());
 						int meta = is.getItemDamage();
 						IIcon ico = b.getIcon(1, meta);
-						String n = "geostrata:ore_"+ore.name().toLowerCase()+"_"+k;
+						String n = "geostrata:ore_"+ore.name().toLowerCase(java.util.Locale.ENGLISH)+"_"+k;
 						k++;
 						IIcon tex = ReikaIconHelper.clipFrom(ico, stone, evt.map, n);
 						//li.add(tex);
@@ -84,7 +84,7 @@ public class OreRenderer implements ISimpleBlockRenderingHandler {
 						Block b = Block.getBlockFromItem(is.getItem());
 						int meta = is.getItemDamage();
 						IIcon ico = b.getIcon(1, meta);
-						String n = "geostrata:ore_"+ore.name().toLowerCase()+"_"+k;
+						String n = "geostrata:ore_"+ore.name().toLowerCase(java.util.Locale.ENGLISH)+"_"+k;
 						k++;
 						IIcon tex = ReikaIconHelper.clipFrom(ico, stone, evt.map, n);
 						//li.add(tex);
@@ -95,7 +95,7 @@ public class OreRenderer implements ISimpleBlockRenderingHandler {
 					}
 				}
 			}
-		}
+		}*/
 	}
 
 	/*
@@ -125,6 +125,7 @@ public class OreRenderer implements ISimpleBlockRenderingHandler {
 		Block b = Block.getBlockFromItem(ore.getItem());
 		int meta = ore.getItemDamage();
 		Tessellator v5 = Tessellator.instance;
+		GL11.glPushMatrix();
 
 		rb.renderMaxX = 1;
 		rb.renderMinY = 0;
@@ -137,6 +138,7 @@ public class OreRenderer implements ISimpleBlockRenderingHandler {
 		IIcon[] ico = new IIcon[]{this.getOreTexture(b, meta), ((BlockOreTile)block).getRockIcon(r)};
 
 		for (int i = 0; i < ico.length; i++) {
+			GL11.glPushMatrix();
 			double dx = 0;
 			double dy = 0;
 			double dz = 0;
@@ -167,12 +169,15 @@ public class OreRenderer implements ISimpleBlockRenderingHandler {
 			v5.draw();
 
 			GL11.glTranslated(0.5, 0.5, 0.5);
+			GL11.glPopMatrix();
 		}
+		GL11.glPopMatrix();
 	}
 
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block b, int modelId, RenderBlocks rb) {
 		Tessellator v5 = Tessellator.instance;
+		GL11.glPushMatrix();
 		TileEntityGeoOre te = (TileEntityGeoOre)world.getTileEntity(x, y, z);
 		//rb.renderStandardBlockWithAmbientOcclusion(te.getOreBlock(), x, y, z, 1, 1, 1);
 
@@ -226,6 +231,7 @@ public class OreRenderer implements ISimpleBlockRenderingHandler {
 		v5.setColorOpaque_F(255, 255, 255);
 		rb.renderFaceYPos(b, x, y+0.001, z, ico);
 		rb.renderFaceYNeg(b, x, y-0.001, z, ico);*/
+		GL11.glPopMatrix();
 		return true;
 	}
 

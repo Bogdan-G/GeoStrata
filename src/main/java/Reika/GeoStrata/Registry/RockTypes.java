@@ -209,7 +209,7 @@ public enum RockTypes {
 
 	public static List<RockTypes> getGennableTypesAt(World world, int x, int y, int z) {
 		List<RockTypes> types = new ArrayList();
-		Random r = new Random();
+		Random r = new org.bogdang.modifications.random.XSTR();
 		for (int i = 0; i < rockList.length; i++) {
 			RockTypes rock = rockList[i];
 			if (rock.canGenerateAt(world, x, y, z, r))
@@ -220,7 +220,7 @@ public enum RockTypes {
 
 	public static int getNumberTypesGennableAt(World world, int x, int y, int z) {
 		int types = 0;
-		Random r = new Random();
+		Random r = new org.bogdang.modifications.random.XSTR();
 		for (int i = 0; i < rockList.length; i++) {
 			RockTypes rock = rockList[i];
 			if (rock.canGenerateAt(world, x, y, z, r))
@@ -231,7 +231,7 @@ public enum RockTypes {
 
 	public List<RockTypes> getCoincidentTypes() {
 		List<RockTypes> types = new ArrayList();
-		Random r = new Random();
+		Random r = new org.bogdang.modifications.random.XSTR();
 		for (int i = 0; i < rockList.length; i++) {
 			RockTypes rock = rockList[i];
 			if (ReikaMathLibrary.doRangesOverLap(minY, maxY, rock.minY, rock.maxY))

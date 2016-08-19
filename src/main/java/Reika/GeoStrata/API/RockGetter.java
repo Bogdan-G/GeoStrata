@@ -77,8 +77,8 @@ public class RockGetter {
 		if (!init)
 			return null;
 		try {
-			Object rtype = Enum.valueOf(typeRegistry, type.toUpperCase());
-			Object rshape = Enum.valueOf(shapeRegistry, shape.toUpperCase());
+			Object rtype = Enum.valueOf(typeRegistry, type.toUpperCase(java.util.Locale.ENGLISH));
+			Object rshape = Enum.valueOf(shapeRegistry, shape.toUpperCase(java.util.Locale.ENGLISH));
 			return (ItemStack)getStackByShape.invoke(rtype, rshape);
 		}
 		catch (IllegalArgumentException e) {
@@ -108,8 +108,8 @@ public class RockGetter {
 		if (!init)
 			return null;
 		try {
-			Object rtype = Enum.valueOf(typeRegistry, type.toUpperCase());
-			Object rshape = Enum.valueOf(shapeRegistry, shape.toUpperCase());
+			Object rtype = Enum.valueOf(typeRegistry, type.toUpperCase(java.util.Locale.ENGLISH));
+			Object rshape = Enum.valueOf(shapeRegistry, shape.toUpperCase(java.util.Locale.ENGLISH));
 			return (Block)getBlockByShape.invoke(rtype, rshape);
 		}
 		catch (IllegalArgumentException e) {
@@ -145,7 +145,7 @@ public class RockGetter {
 		Object rtype = null;
 		Collection<Block> c = new ArrayList();
 		try {
-			rtype = Enum.valueOf(typeRegistry, type.toUpperCase());
+			rtype = Enum.valueOf(typeRegistry, type.toUpperCase(java.util.Locale.ENGLISH));
 		}
 		catch (IllegalArgumentException e) {
 			System.out.println("Invalid rock type "+type+"!");

@@ -41,6 +41,7 @@ public class ShapedStoneRenderer extends BaseBlockRenderer {
 
 		GL11.glEnable(GL11.GL_BLEND);
 		BlendMode.DEFAULT.apply();
+		GL11.glPushMatrix();
 		GL11.glColor3f(1, 1, 1);
 		v5.startDrawingQuads();
 
@@ -75,6 +76,7 @@ public class ShapedStoneRenderer extends BaseBlockRenderer {
 		this.drawInventoryBlock(b, metadata, renderer, ico2);
 		v5.addTranslation(-dx, -dy, -dz);
 		v5.draw();
+		GL11.glPopMatrix();
 		this.unblend();
 	}
 
@@ -92,6 +94,7 @@ public class ShapedStoneRenderer extends BaseBlockRenderer {
 
 	private void drawInventoryBlock(BlockShapedRock b, int metadata, RenderBlocks renderer, IIcon ico) {
 		Tessellator v5 = Tessellator.instance;
+		GL11.glPushMatrix();
 		int color = b.getRenderColor(metadata);
 		Color c = new Color(color);
 
@@ -136,6 +139,7 @@ public class ShapedStoneRenderer extends BaseBlockRenderer {
 		v5.addVertexWithUV(0, 1, 0, du, v);
 		v5.addVertexWithUV(1, 1, 0, u, v);
 		v5.addVertexWithUV(1, 0, 0, u, dv);
+		GL11.glPopMatrix();
 	}
 
 	@Override
@@ -145,6 +149,7 @@ public class ShapedStoneRenderer extends BaseBlockRenderer {
 		int meta = world.getBlockMetadata(x, y, z);
 		RockTypes type = RockTypes.getTypeFromID(block);
 		Tessellator v5 = Tessellator.instance;
+		GL11.glPushMatrix();
 		v5.addTranslation(x, y, z);
 		IIcon ico = type.getIcon();
 		this.renderBlock(world, x, y, z, b, rb, ico);
@@ -159,12 +164,14 @@ public class ShapedStoneRenderer extends BaseBlockRenderer {
 		v5.draw();
 		this.unblend();
 		v5.startDrawingQuads();
+		GL11.glPopMatrix();
 
 		return true;
 	}
 
 	private void renderBlock(IBlockAccess world, int x, int y, int z, BlockShapedRock b, RenderBlocks rb, IIcon ico) {
 		Tessellator v5 = Tessellator.instance;
+		GL11.glPushMatrix();
 		int color = b.colorMultiplier(world, x, y, z);
 		Color c = new Color(color);
 		float u = ico.getMinU();
@@ -173,6 +180,7 @@ public class ShapedStoneRenderer extends BaseBlockRenderer {
 		float dv = ico.getMaxV();
 
 		for (int i = 0; i < 6; i++) {
+			GL11.glPushMatrix();
 			this.faceBrightnessColor(dirs[i].getOpposite(), v5, c.getRed()/255F, c.getGreen()/255F, c.getBlue()/255F);
 			switch(i) {
 			case 0:
@@ -212,7 +220,9 @@ public class ShapedStoneRenderer extends BaseBlockRenderer {
 				v5.addVertexWithUV(1, 0, 0, u, dv);
 				break;
 			}
+			GL11.glPopMatrix();
 		}
+		GL11.glPopMatrix();
 	}
 
 	@Override

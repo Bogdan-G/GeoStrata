@@ -42,6 +42,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 
 		GL11.glEnable(GL11.GL_BLEND);
 		BlendMode.DEFAULT.apply();
+		GL11.glPushMatrix();
 		GL11.glColor3f(1, 1, 1);
 		v5.startDrawingQuads();
 
@@ -137,6 +138,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 		v5.addTranslation(-dx, -dy, -dz);
 
 		v5.draw();
+		GL11.glPopMatrix();
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 
@@ -146,6 +148,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 		BlockConnectedRock b = (BlockConnectedRock)block;
 		RockTypes type = RockTypes.getTypeFromID(block);
 		Tessellator v5 = Tessellator.instance;
+		GL11.glPushMatrix();
 		int color = b.colorMultiplier(world, x, y, z);
 		int[] rgb = ReikaColorAPI.HexToRGB(color);
 
@@ -217,6 +220,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 			//GL11.glDisable(GL11.GL_BLEND);
 			//v5.startDrawingQuads();
 		}
+		GL11.glPopMatrix();
 
 		return true;
 	}
@@ -225,6 +229,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 		BlockConnectedRock b = (BlockConnectedRock)block;
 		RockTypes type = RockTypes.getTypeFromID(block);
 		Tessellator v5 = Tessellator.instance;
+		GL11.glPushMatrix();
 		v5.setColorOpaque(255, 255, 255);
 
 		double d = ModList.optifineInstalled() ? 0.005 : 0.001;
@@ -232,6 +237,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.UP, type);
 			this.faceBrightness(ForgeDirection.DOWN, v5);
 			for (int i = 0; i < li.size(); i++) {
+				GL11.glPushMatrix();
 				int edge = li.get(i);
 				IIcon ico = b.getIconForEdge(edge, type);
 				float u = ico.getMinU();
@@ -247,11 +253,13 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 				v5.addVertexWithUV(0-d, 1+d, 0-d, du, v);
 				v5.addVertexWithUV(0-d, 1+d, 1+d, du, dv);
 				v5.addVertexWithUV(1+d, 1+d, 1+d, u, dv);
+				GL11.glPopMatrix();
 			}
 
 			if (b.hasCentralTexture(type)) {
 				li = b.getSectionsForTexture(world, x, y, z, ForgeDirection.UP, type);
 				for (int i = 0; i < li.size(); i++) {
+					GL11.glPushMatrix();
 					int edge = li.get(i);
 					IIcon ico = b.getSectionForTexture(edge, type);
 					float u = ico.getMinU();
@@ -267,6 +275,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 					v5.addVertexWithUV(0-d, 1+d, 0-d, du, v);
 					v5.addVertexWithUV(0-d, 1+d, 1+d, du, dv);
 					v5.addVertexWithUV(1+d, 1+d, 1+d, u, dv);
+					GL11.glPopMatrix();
 				}
 			}
 		}
@@ -275,6 +284,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.DOWN, type);
 			this.faceBrightness(ForgeDirection.UP, v5);
 			for (int i = 0; i < li.size(); i++) {
+				GL11.glPushMatrix();
 				int edge = li.get(i);
 				IIcon ico = b.getIconForEdge(edge, type);
 				float u = ico.getMinU();
@@ -290,11 +300,13 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 				v5.addVertexWithUV(1+d, 0-d, 0-d, u, v);
 				v5.addVertexWithUV(1+d, 0-d, 1+d, u, dv);
 				v5.addVertexWithUV(0-d, 0-d, 1+d, du, dv);
+				GL11.glPopMatrix();
 			}
 
 			if (b.hasCentralTexture(type)) {
 				li = b.getSectionsForTexture(world, x, y, z, ForgeDirection.DOWN, type);
 				for (int i = 0; i < li.size(); i++) {
+					GL11.glPushMatrix();
 					int edge = li.get(i);
 					IIcon ico = b.getSectionForTexture(edge, type);
 					float u = ico.getMinU();
@@ -310,6 +322,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 					v5.addVertexWithUV(1+d, 0-d, 0-d, u, v);
 					v5.addVertexWithUV(1+d, 0-d, 1+d, u, dv);
 					v5.addVertexWithUV(0-d, 0-d, 1+d, du, dv);
+					GL11.glPopMatrix();
 				}
 			}
 		}
@@ -318,6 +331,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.EAST, type);
 			this.faceBrightness(ForgeDirection.WEST, v5);
 			for (int i = 0; i < li.size(); i++) {
+				GL11.glPushMatrix();
 				int edge = li.get(i);
 				IIcon ico = b.getIconForEdge(edge, type);
 				float u = ico.getMinU();
@@ -333,11 +347,13 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 				v5.addVertexWithUV(1+d, 1+d, 0-d, u, v);
 				v5.addVertexWithUV(1+d, 1+d, 1+d, u, dv);
 				v5.addVertexWithUV(1+d, 0-d, 1+d, du, dv);
+				GL11.glPopMatrix();
 			}
 
 			if (b.hasCentralTexture(type)) {
 				li = b.getSectionsForTexture(world, x, y, z, ForgeDirection.EAST, type);
 				for (int i = 0; i < li.size(); i++) {
+					GL11.glPushMatrix();
 					int edge = li.get(i);
 					IIcon ico = b.getSectionForTexture(edge, type);
 					float u = ico.getMinU();
@@ -353,6 +369,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 					v5.addVertexWithUV(1+d, 1+d, 0-d, u, v);
 					v5.addVertexWithUV(1+d, 1+d, 1+d, u, dv);
 					v5.addVertexWithUV(1+d, 0-d, 1+d, du, dv);
+					GL11.glPopMatrix();
 				}
 			}
 		}
@@ -361,6 +378,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.WEST, type);
 			this.faceBrightness(ForgeDirection.EAST, v5);
 			for (int i = 0; i < li.size(); i++) {
+				GL11.glPushMatrix();
 				int edge = li.get(i);
 				IIcon ico = b.getIconForEdge(edge, type);
 				float u = ico.getMinU();
@@ -376,11 +394,13 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 				v5.addVertexWithUV(0-d, 0-d, 0-d, du, v);
 				v5.addVertexWithUV(0-d, 0-d, 1+d, du, dv);
 				v5.addVertexWithUV(0-d, 1+d, 1+d, u, dv);
+				GL11.glPopMatrix();
 			}
 
 			if (b.hasCentralTexture(type)) {
 				li = b.getSectionsForTexture(world, x, y, z, ForgeDirection.WEST, type);
 				for (int i = 0; i < li.size(); i++) {
+					GL11.glPushMatrix();
 					int edge = li.get(i);
 					IIcon ico = b.getSectionForTexture(edge, type);
 					float u = ico.getMinU();
@@ -396,6 +416,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 					v5.addVertexWithUV(0-d, 0-d, 0-d, du, v);
 					v5.addVertexWithUV(0-d, 0-d, 1+d, du, dv);
 					v5.addVertexWithUV(0-d, 1+d, 1+d, u, dv);
+					GL11.glPopMatrix();
 				}
 			}
 		}
@@ -404,6 +425,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.SOUTH, type);
 			this.faceBrightness(ForgeDirection.NORTH, v5);
 			for (int i = 0; i < li.size(); i++) {
+				GL11.glPushMatrix();
 				int edge = li.get(i);
 				IIcon ico = b.getIconForEdge(edge, type);
 				float u = ico.getMinU();
@@ -419,11 +441,13 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 				v5.addVertexWithUV(0-d, 0-d, 1+d, du, v);
 				v5.addVertexWithUV(1+d, 0-d, 1+d, du, dv);
 				v5.addVertexWithUV(1+d, 1+d, 1+d, u, dv);
+				GL11.glPopMatrix();
 			}
 
 			if (b.hasCentralTexture(type)) {
 				li = b.getSectionsForTexture(world, x, y, z, ForgeDirection.SOUTH, type);
 				for (int i = 0; i < li.size(); i++) {
+					GL11.glPushMatrix();
 					int edge = li.get(i);
 					IIcon ico = b.getSectionForTexture(edge, type);
 					float u = ico.getMinU();
@@ -439,6 +463,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 					v5.addVertexWithUV(0-d, 0-d, 1+d, du, v);
 					v5.addVertexWithUV(1+d, 0-d, 1+d, du, dv);
 					v5.addVertexWithUV(1+d, 1+d, 1+d, u, dv);
+					GL11.glPopMatrix();
 				}
 			}
 		}
@@ -447,6 +472,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.NORTH, type);
 			this.faceBrightness(ForgeDirection.SOUTH, v5);
 			for (int i = 0; i < li.size(); i++) {
+				GL11.glPushMatrix();
 				int edge = li.get(i);
 				IIcon ico = b.getIconForEdge(edge, type);
 				float u = ico.getMinU();
@@ -462,11 +488,13 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 				v5.addVertexWithUV(0-d, 1+d, 0-d, u, v);
 				v5.addVertexWithUV(1+d, 1+d, 0-d, u, dv);
 				v5.addVertexWithUV(1+d, 0-d, 0-d, du, dv);
+				GL11.glPopMatrix();
 			}
 
 			if (b.hasCentralTexture(type)) {
 				li = b.getSectionsForTexture(world, x, y, z, ForgeDirection.NORTH, type);
 				for (int i = 0; i < li.size(); i++) {
+					GL11.glPushMatrix();
 					int edge = li.get(i);
 					IIcon ico = b.getSectionForTexture(edge, type);
 					float u = ico.getMinU();
@@ -482,9 +510,11 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 					v5.addVertexWithUV(0-d, 1+d, 0-d, u, v);
 					v5.addVertexWithUV(1+d, 1+d, 0-d, u, dv);
 					v5.addVertexWithUV(1+d, 0-d, 0-d, du, dv);
+					GL11.glPopMatrix();
 				}
 			}
 		}
+		GL11.glPopMatrix();
 	}
 
 	@Override

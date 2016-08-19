@@ -243,7 +243,7 @@ public class GeoStrata extends DragonAPIMod {
 			OreDictionary.registerOre("stone", rock);
 			OreDictionary.registerOre("rock"+type.getName(), rock);
 			OreDictionary.registerOre("stone"+type.getName(), rock);
-			OreDictionary.registerOre(type.getName().toLowerCase(), rock);
+			OreDictionary.registerOre(type.getName().toLowerCase(java.util.Locale.ENGLISH), rock);
 		}
 		OreDictionary.registerOre("sandstone", RockTypes.SANDSTONE.getItem(RockShapes.SMOOTH));
 		OreDictionary.registerOre("sandstone", Blocks.sandstone);

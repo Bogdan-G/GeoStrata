@@ -25,7 +25,7 @@ public class VentGenerator implements RetroactiveGenerator {
 
 	public static final VentGenerator instance = new VentGenerator();
 
-	private static final int PER_CHUNK = 60; //calls per chunk; vast majority fail
+	private static final int PER_CHUNK = 30; //calls per chunk; vast majority fail //60 -> 30, adaptivity for BMPL
 
 	private VentGenerator() {
 
@@ -81,14 +81,15 @@ public class VentGenerator implements RetroactiveGenerator {
 			return true;
 		if (id == Blocks.gravel)
 			return true;
-		if (id == Blocks.planks) //mineshafts
+		//hmm, no need check? (empty if's)
+		/*if (id == Blocks.planks) //mineshafts
 			;//return true;
 		if (id == Blocks.bedrock)
 			;//return true;
 		if (id == Blocks.obsidian)
 			;//return true;
 		if (id == Blocks.stonebrick) //strongholds
-			;//return true;
+			;//return true;*/
 		if (id == Blocks.monster_egg)
 			return true;
 		if (id == Blocks.cobblestone)

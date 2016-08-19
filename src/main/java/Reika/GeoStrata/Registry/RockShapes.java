@@ -111,7 +111,7 @@ public enum RockShapes {
 				Block b = (Block)blockClass.newInstance();
 				map.put(r, b);
 
-				String name = "geostrata_rock_"+(r.name()+"_"+this.name()).toLowerCase();
+				String name = "geostrata_rock_"+(r.name()+"_"+this.name()).toLowerCase(java.util.Locale.ENGLISH);
 				b.setBlockName(name);
 				GameRegistry.registerBlock(b, ItemBlockRock.class, name);
 				b.setHardness(r.blockHardness);

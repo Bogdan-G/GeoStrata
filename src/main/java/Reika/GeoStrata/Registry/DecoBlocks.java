@@ -63,7 +63,7 @@ public enum DecoBlocks {
 	}
 
 	public String getTex() {
-		return this.name().toLowerCase();
+		return this.name().toLowerCase(java.util.Locale.ENGLISH);
 	}
 
 	public float getHardness() {

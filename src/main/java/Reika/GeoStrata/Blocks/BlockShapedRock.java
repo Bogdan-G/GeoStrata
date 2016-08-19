@@ -28,7 +28,7 @@ public class BlockShapedRock extends RockBlock {
 
 	public BlockShapedRock() {
 		super();
-		//shapeType = type.toLowerCase();
+		//shapeType = type.toLowerCase(java.util.Locale.ENGLISH);
 	}
 
 	@Override

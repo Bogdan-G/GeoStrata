@@ -81,12 +81,12 @@ public class BlockConnectedRock extends RockBlock {
 		for (int i = 0; i < RockTypes.rockList.length; i++) {
 			RockTypes r = RockTypes.rockList[i];
 			String name = r.getName();
-			icons[r.ordinal()] = ico.registerIcon("GeoStrata:"+name.toLowerCase());
+			icons[r.ordinal()] = ico.registerIcon("GeoStrata:"+name.toLowerCase(java.util.Locale.ENGLISH));
 			GeoStrata.logger.debug("Adding "+name+" rock icon "+icons[r.ordinal()].getIconName());
 
 			for (int k = 0; k < 10; k++) {
-				String e = ReikaStringParser.stripSpaces("GeoStrata:"+RockShapes.getShape(this, 0).name.toLowerCase()+"/"+k);
-				String s = ReikaStringParser.stripSpaces("GeoStrata:"+RockShapes.getShape(this, 0).name.toLowerCase()+"/"+k+"_sec");
+				String e = ReikaStringParser.stripSpaces("GeoStrata:"+RockShapes.getShape(this, 0).name.toLowerCase(java.util.Locale.ENGLISH)+"/"+k);
+				String s = ReikaStringParser.stripSpaces("GeoStrata:"+RockShapes.getShape(this, 0).name.toLowerCase(java.util.Locale.ENGLISH)+"/"+k+"_sec");
 				edges[k][r.ordinal()] = ico.registerIcon(e);
 				sections[k][r.ordinal()] = ico.registerIcon(s);
 			}
@@ -113,70 +113,70 @@ public class BlockConnectedRock extends RockBlock {
 		li.addAll(allDirs);
 
 		if (this.rendersFrontTextureIndividually())
-			li.remove(new Integer(5));
+			li.remove(Integer.valueOf(5));
 
 		if (face.offsetX != 0) { //test YZ
 			//sides; removed if have adjacent on side
 			if (RockTypes.getTypeAtCoords(world, x, y, z+1) == rock && RockShapes.getShape(world, x, y, z+1) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(2));
+				li.remove(Integer.valueOf(2));
 			if (RockTypes.getTypeAtCoords(world, x, y, z-1) == rock && RockShapes.getShape(world, x, y, z-1) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(8));
+				li.remove(Integer.valueOf(8));
 			if (RockTypes.getTypeAtCoords(world, x, y+1, z) == rock && RockShapes.getShape(world, x, y+1, z) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(4));
+				li.remove(Integer.valueOf(4));
 			if (RockTypes.getTypeAtCoords(world, x, y-1, z) == rock && RockShapes.getShape(world, x, y-1, z) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(6));
+				li.remove(Integer.valueOf(6));
 
 			//Corners; only removed if have adjacent on side AND corner
 			if (RockTypes.getTypeAtCoords(world, x, y+1, z+1) == rock && RockShapes.getShape(world, x, y+1, z+1) == RockShapes.getShape(this, 0) && !li.contains(4) && !li.contains(2))
-				li.remove(new Integer(1));
+				li.remove(Integer.valueOf(1));
 			if (RockTypes.getTypeAtCoords(world, x, y-1, z-1) == rock && RockShapes.getShape(world, x, y-1, z-1) == RockShapes.getShape(this, 0) && !li.contains(6) && !li.contains(8))
-				li.remove(new Integer(9));
+				li.remove(Integer.valueOf(9));
 			if (RockTypes.getTypeAtCoords(world, x, y+1, z-1) == rock && RockShapes.getShape(world, x, y+1, z-1) == RockShapes.getShape(this, 0) && !li.contains(4) && !li.contains(8))
-				li.remove(new Integer(7));
+				li.remove(Integer.valueOf(7));
 			if (RockTypes.getTypeAtCoords(world, x, y-1, z+1) == rock && RockShapes.getShape(world, x, y-1, z+1) == RockShapes.getShape(this, 0) && !li.contains(2) && !li.contains(6))
-				li.remove(new Integer(3));
+				li.remove(Integer.valueOf(3));
 		}
 		if (face.offsetY != 0) { //test XZ
 			//sides; removed if have adjacent on side
 			if (RockTypes.getTypeAtCoords(world, x, y, z+1) == rock && RockShapes.getShape(world, x, y, z+1) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(2));
+				li.remove(Integer.valueOf(2));
 			if (RockTypes.getTypeAtCoords(world, x, y, z-1) == rock && RockShapes.getShape(world, x, y, z-1) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(8));
+				li.remove(Integer.valueOf(8));
 			if (RockTypes.getTypeAtCoords(world, x+1, y, z) == rock && RockShapes.getShape(world, x+1, y, z) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(4));
+				li.remove(Integer.valueOf(4));
 			if (RockTypes.getTypeAtCoords(world, x-1, y, z) == rock && RockShapes.getShape(world, x-1, y, z) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(6));
+				li.remove(Integer.valueOf(6));
 
 			//Corners; only removed if have adjacent on side AND corner
 			if (RockTypes.getTypeAtCoords(world, x+1, y, z+1) == rock && RockShapes.getShape(world, x+1, y, z+1) == RockShapes.getShape(this, 0) && !li.contains(4) && !li.contains(2))
-				li.remove(new Integer(1));
+				li.remove(Integer.valueOf(1));
 			if (RockTypes.getTypeAtCoords(world, x-1, y, z-1) == rock && RockShapes.getShape(world, x-1, y, z-1) == RockShapes.getShape(this, 0) && !li.contains(6) && !li.contains(8))
-				li.remove(new Integer(9));
+				li.remove(Integer.valueOf(9));
 			if (RockTypes.getTypeAtCoords(world, x+1, y, z-1) == rock && RockShapes.getShape(world, x+1, y, z-1) == RockShapes.getShape(this, 0) && !li.contains(4) && !li.contains(8))
-				li.remove(new Integer(7));
+				li.remove(Integer.valueOf(7));
 			if (RockTypes.getTypeAtCoords(world, x-1, y, z+1) == rock && RockShapes.getShape(world, x-1, y, z+1) == RockShapes.getShape(this, 0) && !li.contains(2) && !li.contains(6))
-				li.remove(new Integer(3));
+				li.remove(Integer.valueOf(3));
 		}
 		if (face.offsetZ != 0) { //test XY
 			//sides; removed if have adjacent on side
 			if (RockTypes.getTypeAtCoords(world, x, y+1, z) == rock && RockShapes.getShape(world, x, y+1, z) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(4));
+				li.remove(Integer.valueOf(4));
 			if (RockTypes.getTypeAtCoords(world, x, y-1, z) == rock && RockShapes.getShape(world, x, y-1, z) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(6));
+				li.remove(Integer.valueOf(6));
 			if (RockTypes.getTypeAtCoords(world, x+1, y, z) == rock && RockShapes.getShape(world, x+1, y, z) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(2));
+				li.remove(Integer.valueOf(2));
 			if (RockTypes.getTypeAtCoords(world, x-1, y, z) == rock && RockShapes.getShape(world, x-1, y, z) == RockShapes.getShape(this, 0))
-				li.remove(new Integer(8));
+				li.remove(Integer.valueOf(8));
 
 			//Corners; only removed if have adjacent on side AND corner
 			if (RockTypes.getTypeAtCoords(world, x+1, y+1, z) == rock && RockShapes.getShape(world, x+1, y+1, z) == RockShapes.getShape(this, 0) && !li.contains(2) && !li.contains(4))
-				li.remove(new Integer(1));
+				li.remove(Integer.valueOf(1));
 			if (RockTypes.getTypeAtCoords(world, x-1, y-1, z) == rock && RockShapes.getShape(world, x-1, y-1, z) == RockShapes.getShape(this, 0) && !li.contains(8) && !li.contains(6))
-				li.remove(new Integer(9));
+				li.remove(Integer.valueOf(9));
 			if (RockTypes.getTypeAtCoords(world, x+1, y-1, z) == rock && RockShapes.getShape(world, x+1, y-1, z) == RockShapes.getShape(this, 0) && !li.contains(2) && !li.contains(6))
-				li.remove(new Integer(3));
+				li.remove(Integer.valueOf(3));
 			if (RockTypes.getTypeAtCoords(world, x-1, y+1, z) == rock && RockShapes.getShape(world, x-1, y+1, z) == RockShapes.getShape(this, 0) && !li.contains(4) && !li.contains(8))
-				li.remove(new Integer(7));
+				li.remove(Integer.valueOf(7));
 		}
 		return li;
 	}

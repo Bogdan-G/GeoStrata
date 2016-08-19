@@ -285,7 +285,7 @@ public class BlockOreTile extends Block implements SpecialOreBlock {
 	public void registerBlockIcons(IIconRegister ico) {
 		for (int i = 0; i < RockTypes.rockList.length; i++) {
 			RockTypes r = RockTypes.rockList[i];
-			icons[i] = ico.registerIcon("geostrata:ore/"+r.name().toLowerCase());
+			icons[i] = ico.registerIcon("geostrata:ore/"+r.name().toLowerCase(java.util.Locale.ENGLISH));
 		}
 	}
 
