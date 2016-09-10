@@ -28,6 +28,8 @@ import Reika.DragonAPI.Libraries.Java.ReikaGLHelper.BlendMode;
 import Reika.GeoStrata.Blocks.BlockConnectedRock;
 import Reika.GeoStrata.Registry.RockTypes;
 
+import cern.colt.list.IntArrayList;
+
 public class ConnectedStoneRenderer extends BaseBlockRenderer {
 
 	public static int renderPass;
@@ -234,7 +236,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 
 		double d = ModList.optifineInstalled() ? 0.005 : 0.001;
 		if (b.shouldSideBeRendered(world, x, y+1, z, ForgeDirection.UP.ordinal())) {
-			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.UP, type);
+			IntArrayList li = b.getEdgesForFace(world, x, y, z, ForgeDirection.UP, type);
 			this.faceBrightness(ForgeDirection.DOWN, v5);
 			for (int i = 0; i < li.size(); i++) {
 				GL11.glPushMatrix();
@@ -281,7 +283,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 		}
 
 		if (b.shouldSideBeRendered(world, x, y-1, z, ForgeDirection.DOWN.ordinal())) {
-			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.DOWN, type);
+			IntArrayList li = b.getEdgesForFace(world, x, y, z, ForgeDirection.DOWN, type);
 			this.faceBrightness(ForgeDirection.UP, v5);
 			for (int i = 0; i < li.size(); i++) {
 				GL11.glPushMatrix();
@@ -328,7 +330,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 		}
 
 		if (b.shouldSideBeRendered(world, x+1, y, z, ForgeDirection.EAST.ordinal())) {
-			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.EAST, type);
+			IntArrayList li = b.getEdgesForFace(world, x, y, z, ForgeDirection.EAST, type);
 			this.faceBrightness(ForgeDirection.WEST, v5);
 			for (int i = 0; i < li.size(); i++) {
 				GL11.glPushMatrix();
@@ -375,7 +377,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 		}
 
 		if (b.shouldSideBeRendered(world, x-1, y, z, ForgeDirection.WEST.ordinal())) {
-			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.WEST, type);
+			IntArrayList li = b.getEdgesForFace(world, x, y, z, ForgeDirection.WEST, type);
 			this.faceBrightness(ForgeDirection.EAST, v5);
 			for (int i = 0; i < li.size(); i++) {
 				GL11.glPushMatrix();
@@ -422,7 +424,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 		}
 
 		if (b.shouldSideBeRendered(world, x, y, z+1, ForgeDirection.SOUTH.ordinal())) {
-			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.SOUTH, type);
+			IntArrayList li = b.getEdgesForFace(world, x, y, z, ForgeDirection.SOUTH, type);
 			this.faceBrightness(ForgeDirection.NORTH, v5);
 			for (int i = 0; i < li.size(); i++) {
 				GL11.glPushMatrix();
@@ -469,7 +471,7 @@ public class ConnectedStoneRenderer extends BaseBlockRenderer {
 		}
 
 		if (b.shouldSideBeRendered(world, x, y, z-1, ForgeDirection.NORTH.ordinal())) {
-			ArrayList<Integer> li = b.getEdgesForFace(world, x, y, z, ForgeDirection.NORTH, type);
+			IntArrayList li = b.getEdgesForFace(world, x, y, z, ForgeDirection.NORTH, type);
 			this.faceBrightness(ForgeDirection.SOUTH, v5);
 			for (int i = 0; i < li.size(); i++) {
 				GL11.glPushMatrix();

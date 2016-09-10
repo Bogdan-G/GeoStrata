@@ -31,6 +31,8 @@ import Reika.DragonAPI.Libraries.World.ReikaWorldHelper;
 import Reika.DragonAPI.ModInteract.ItemHandlers.RedstoneArsenalHandler;
 import Reika.DragonAPI.ModInteract.ItemHandlers.TinkerToolHandler;
 
+import org.eclipse.collections.impl.map.mutable.UnifiedMap;
+
 public enum RockTypes {
 	//Generic makeup: Igneous 0-24; Metamorphic 16-40; Sedimentary 40+;
 
@@ -61,7 +63,7 @@ public enum RockTypes {
 	public final float rarity;
 	public final int rockColor;
 
-	private static final HashMap<Block, RockTypes> mappings = new HashMap();
+	private static final UnifiedMap<Block, RockTypes> mappings = new UnifiedMap();
 
 	public static final RockTypes[] rockList = RockTypes.values();
 

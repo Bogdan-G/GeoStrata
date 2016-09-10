@@ -48,12 +48,14 @@ import Reika.GeoStrata.World.RockGenerator;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import cern.colt.map.OpenIntObjectHashMap;
+
 public class BlockOreTile extends Block implements SpecialOreBlock {
 
 	private static PluralMap<Integer> metaMap = new PluralMap(3);
-	private static HashMap<Integer, ItemStack> oreMap = new HashMap();
-	private static HashMap<Integer, RockTypes> rockMap = new HashMap();
-	private static HashMap<Integer, OreType> enumMap = new HashMap();
+	private static OpenIntObjectHashMap oreMap = new OpenIntObjectHashMap();
+	private static OpenIntObjectHashMap rockMap = new OpenIntObjectHashMap();
+	private static OpenIntObjectHashMap enumMap = new OpenIntObjectHashMap();
 	private static boolean init = false;
 
 	private IIcon[] icons = new IIcon[RockTypes.rockList.length];
@@ -122,7 +124,8 @@ public class BlockOreTile extends Block implements SpecialOreBlock {
 		if (!init) {
 			this.initSubs();
 		}
-		for (int meta : oreMap.keySet()) {
+		for (Object meta0 : oreMap.keys().toList()) {
+			int meta = ((Integer)meta0).intValue();
 			li.add(new ItemStack(item, 1, meta));
 		}
 	}
@@ -139,14 +142,14 @@ public class BlockOreTile extends Block implements SpecialOreBlock {
 		if (!init) {
 			initSubs();
 		}
-		return rockMap.get(meta);
+		return (RockTypes)rockMap.get(meta);
 	}
 
 	public static OreType getOreFromItem(int meta) {
 		if (!init) {
 			initSubs();
 		}
-		return enumMap.get(meta);
+		return (OreType)enumMap.get(meta);
 	}
 
 	public static int getMetadataByTypes(RockTypes r, OreType o) {
@@ -160,7 +163,7 @@ public class BlockOreTile extends Block implements SpecialOreBlock {
 		if (!init) {
 			initSubs();
 		}
-		return oreMap.get(meta).copy();
+		return ((ItemStack)oreMap.get(meta)).copy();
 	}
 
 	public static ItemStack getOreByItemBlock(ItemStack is) {
@@ -355,7 +358,7 @@ public class BlockOreTile extends Block implements SpecialOreBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public final int getRenderColor(int dmg) {
-		RockTypes rock = rockMap.get(dmg);
+		RockTypes rock = (RockTypes)rockMap.get(dmg);
 		EntityPlayer ep = Minecraft.getMinecraft().thePlayer;
 		int x = MathHelper.floor_double(ep.posX);
 		int y = MathHelper.floor_double(ep.posY);

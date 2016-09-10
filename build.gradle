@@ -104,6 +104,7 @@ jar {
   exclude 'Reika/DragonAPI'
   exclude '*.jar'
   exclude 'META-INF/DragonAPI_at.cfg'
+  exclude 'Reika/GeoStrata/nice render_strip32.png'
 
   includeEmptyDirs = false
 }

@@ -25,7 +25,7 @@ import Reika.GeoStrata.Blocks.BlockSmooth;
 import Reika.GeoStrata.Items.ItemBlockRock;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-
+import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 
 public enum RockShapes {
 
@@ -58,7 +58,7 @@ public enum RockShapes {
 	public static final RockShapes[] shapeList = values();
 	private static final BlockMap<RockShapes> shapeMap = new BlockMap();
 	private static final EnumMap<RockShapes, EnumMap<RockTypes, Block>> blockMap = new EnumMap(RockShapes.class);
-	private static final HashMap<Integer, ArrayList<RockShapes>> offsetMap = new HashMap();
+	private static final UnifiedMap<Integer, ArrayList<RockShapes>> offsetMap = new UnifiedMap();
 
 	/*
 	private RockShapes(GeoBlocks b, String s) {

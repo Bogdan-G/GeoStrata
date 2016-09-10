@@ -33,6 +33,8 @@ import Reika.GeoStrata.Items.ItemBlockGeoOre;
 import Reika.GeoStrata.Items.ItemBlockRockDeco;
 import Reika.GeoStrata.Items.ItemBlockVent;
 
+import org.eclipse.collections.impl.map.mutable.UnifiedMap;
+
 public enum GeoBlocks implements BlockEnum {
 
 	DECO(BlockRockDeco.class, ItemBlockRockDeco.class, "Deco Blocks"),
@@ -48,7 +50,7 @@ public enum GeoBlocks implements BlockEnum {
 
 	public static final GeoBlocks[] blockList = values();
 
-	private static final HashMap<Block, GeoBlocks> IDMap = new HashMap();
+	private static final UnifiedMap<Block, GeoBlocks> IDMap = new UnifiedMap();
 
 	private GeoBlocks(Class <? extends Block> cl, Class<? extends ItemBlock> ib, String n) {
 		this(cl, ib, n, null);
