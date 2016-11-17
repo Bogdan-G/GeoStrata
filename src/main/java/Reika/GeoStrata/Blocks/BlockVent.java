@@ -55,6 +55,7 @@ public class BlockVent extends Block/* implements MinerBlock, EnvironmentalHeatS
 		this.setTickRandomly(true);
 		this.setHardness(Blocks.stone.blockHardness);
 		this.setResistance(Blocks.stone.blockResistance);
+		this.setHarvestLevel("pickaxe", 2);
 	}
 
 	@Override

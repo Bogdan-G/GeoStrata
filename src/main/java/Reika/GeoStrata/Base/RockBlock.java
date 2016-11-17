@@ -56,6 +56,7 @@ public abstract class RockBlock extends Block implements /*Laserable, */IWrappab
 		super(Material.rock);
 		this.setCreativeTab(GeoStrata.tabGeo);
 		//blockHardness = 1F;
+		this.setHarvestLevel("pickaxe", 2);
 	}
 	/*
 	@Override

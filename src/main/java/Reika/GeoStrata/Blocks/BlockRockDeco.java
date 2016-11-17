@@ -28,6 +28,7 @@ public class BlockRockDeco extends Block {
 	public BlockRockDeco(Material par2Material) {
 		super(par2Material);
 		this.setCreativeTab(GeoStrata.tabGeo);
+		this.setHarvestLevel("pickaxe", 2);
 	}
 
 	@Override

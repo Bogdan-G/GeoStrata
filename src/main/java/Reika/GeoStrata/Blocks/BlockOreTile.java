@@ -70,6 +70,7 @@ public class BlockOreTile extends Block implements SpecialOreBlock {
 		if (RockGenerator.instance.destroyOres()) {
 			this.setTickRandomly(true);
 		}
+		this.setHarvestLevel("pickaxe", 2);
 	}
 
 	private static void initSubs() {

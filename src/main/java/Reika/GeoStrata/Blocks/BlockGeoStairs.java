@@ -35,6 +35,7 @@ public class BlockGeoStairs extends BlockStairs {
 		this.setHardness(2);
 		this.setResistance(10);
 		this.setLightOpacity(0); //fixes the dark side bug
+		this.setHarvestLevel("pickaxe", 2);
 	}
 
 	@Override

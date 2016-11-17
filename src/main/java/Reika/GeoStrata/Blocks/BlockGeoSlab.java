@@ -34,6 +34,7 @@ public class BlockGeoSlab extends BlockSlab {
 		this.setCreativeTab(GeoStrata.tabGeoSlabs);
 		this.setHardness(2);
 		this.setResistance(10);
+		this.setHarvestLevel("pickaxe", 2);
 	}
 
 	@Override
