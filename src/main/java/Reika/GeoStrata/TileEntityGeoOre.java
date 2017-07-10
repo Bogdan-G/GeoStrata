@@ -17,6 +17,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import Reika.DragonAPI.Interfaces.Registry.OreType;
 import Reika.DragonAPI.Libraries.Registry.ReikaOreHelper;
@@ -31,6 +32,7 @@ public class TileEntityGeoOre extends TileEntity {
 	private ModOreList modore;
 	private Block block;
 	private int metadata;
+	protected AxisAlignedBB aabb;
 
 	@Override
 	public boolean canUpdate() {
@@ -145,6 +147,16 @@ public class TileEntityGeoOre extends TileEntity {
 	@Override
 	public String toString() {
 		return type+" "+block+":"+metadata+" ("+ore+" & "+modore+")";
+	}
+
+	@Override
+	public void validate() {
+		aabb = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1);
+	}
+
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return aabb;
 	}
 
 }

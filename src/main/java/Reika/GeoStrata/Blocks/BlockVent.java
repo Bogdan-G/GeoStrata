@@ -48,6 +48,7 @@ public class BlockVent extends Block/* implements MinerBlock, EnvironmentalHeatS
 	private final IIcon[] icons = new IIcon[VentType.list.length];
 	private static final IIcon[] internal = new IIcon[VentType.list.length];
 	//private static IIcon inactive;
+	private long updateTick_time=0;
 
 	public BlockVent(Material par2Material) {
 		super(par2Material);
@@ -121,10 +122,14 @@ public class BlockVent extends Block/* implements MinerBlock, EnvironmentalHeatS
 			e.attackEntityFrom(DamageSource.inFire, 2);
 		}*/
 
+		long time = System.currentTimeMillis();
+		if (time-updateTick_time>=50) { //fix crash StackOverflowError
+		updateTick_time=time;
 		TileEntityVent te = (TileEntityVent)world.getTileEntity(x, y, z);
 		if (!world.isBlockIndirectlyGettingPowered(x, y, z) && te.canFire())
 			te.activate();
 		world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world)+rand.nextInt(2400));
+		}
 	}
 
 	@Override
@@ -166,6 +171,7 @@ public class BlockVent extends Block/* implements MinerBlock, EnvironmentalHeatS
 		private int activeTimer = 0;
 		private VentType type;
 		private static final Random rand = new org.bogdang.modifications.random.XSTR();
+		protected AxisAlignedBB aabb;
 
 		private void activate() {
 			activeTimer = 40+rand.nextInt(600);
@@ -343,6 +349,15 @@ public class BlockVent extends Block/* implements MinerBlock, EnvironmentalHeatS
 			this.readFromNBT(p.field_148860_e);
 		}
 
+		@Override
+		public void validate() {
+			aabb = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1);
+		}
+
+		@Override
+		public AxisAlignedBB getRenderBoundingBox() {
+			return aabb;
+		}
 	}
 
 	public static enum VentType {

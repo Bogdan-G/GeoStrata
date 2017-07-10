@@ -92,7 +92,7 @@ public class GeoStrata extends DragonAPIMod {
 		//this.verifyInstallation();
 		config.loadSubfolderedConfigFile(evt);
 		config.initProps(evt);
-		logger = new ModLogger(instance, false);
+		logger = new ModLogger(instance, true);//false->true
 		if (DragonOptions.FILELOG.getState())
 			logger.setOutput("**_Loading_Log.log");
 		proxy.registerSounds();
@@ -205,6 +205,19 @@ public class GeoStrata extends DragonAPIMod {
 
 	private static void loadClasses() {
 		ReikaRegistryHelper.instantiateAndRegisterBlocks(instance, GeoBlocks.blockList, blocks);
+		//test crutch for ClassNotFoundException
+		/*boolean fall = false;
+		try {
+		Class.forName("Reika.GeoStrata.Blocks.BlockSmooth.class");
+		Class.forName("Reika.GeoStrata.Blocks.BlockShapedRock.class");
+		Class.forName("Reika.GeoStrata.Blocks.BlockConnectedRock.class");
+		} catch (Throwable e) {cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, e, "GeoStrata stacktrace: %s", e);fall = true;}
+		try {
+		if (fall) {
+		Class.forName("Reika.GeoStrata.Blocks.BlockSmooth.class", true, instance.getClass().getClassLoader().getClass().getClassLoader());
+		Class.forName("Reika.GeoStrata.Blocks.BlockShapedRock.class", true, instance.getClass().getClassLoader().getClass().getClassLoader());
+		Class.forName("Reika.GeoStrata.Blocks.BlockConnectedRock.class", true, instance.getClass().getClassLoader().getClass().getClassLoader());
+		}} catch (Throwable e) {cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, e, "GeoStrata stacktrace: %s", e);}*/
 		ArrayList<Block> blocks = new ArrayList();
 		for (int i = 0; i < RockTypes.rockList.length; i++) {
 			RockTypes r = RockTypes.rockList[i];

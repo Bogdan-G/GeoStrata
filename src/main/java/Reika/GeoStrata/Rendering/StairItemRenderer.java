@@ -21,6 +21,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 import Reika.DragonAPI.Libraries.MathSci.ReikaMathLibrary;
 import Reika.GeoStrata.Items.ItemBlockAnyGeoVariant;
@@ -102,6 +103,18 @@ public class StairItemRenderer implements IItemRenderer {
 			else {
 				return super.getRenderColor(dmg);
 			}
+		}
+
+		@Override
+		public int tickRate(World p_149738_1_)
+		{
+			return 20;
+		}
+
+		@Override
+		public boolean isReplaceableOreGen(World world, int x, int y, int z, Block target)
+		{
+			return true;
 		}
 
 	}

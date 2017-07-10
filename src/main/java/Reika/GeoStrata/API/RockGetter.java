@@ -46,27 +46,11 @@ public class RockGetter {
 			init = true;
 		}
 		catch (ClassNotFoundException e) {
-			System.out.println("GeoStrata class not found!");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "GeoStrata class not found!");
 			e.printStackTrace();
 		}
-		catch (IllegalArgumentException e) {
-			System.out.println("GeoStrata class not read correctly!");
-			e.printStackTrace();
-		}
-		catch (IllegalAccessException e) {
-			System.out.println("GeoStrata class not read correctly!");
-			e.printStackTrace();
-		}
-		catch (NoSuchMethodException e) {
-			System.out.println("GeoStrata class not read correctly!");
-			e.printStackTrace();
-		}
-		catch (NoSuchFieldException e) {
-			System.out.println("GeoStrata class not read correctly!");
-			e.printStackTrace();
-		}
-		catch (SecurityException e) {
-			System.out.println("GeoStrata class not read correctly!");
+		catch (IllegalArgumentException | IllegalAccessException | NoSuchMethodException | NoSuchFieldException | SecurityException e) {
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "GeoStrata class not read correctly!");
 			e.printStackTrace();
 		}
 	}
@@ -82,21 +66,21 @@ public class RockGetter {
 			return (ItemStack)getStackByShape.invoke(rtype, rshape);
 		}
 		catch (IllegalArgumentException e) {
-			System.out.println("Invalid enum parameter!");
-			System.out.println("Valid rock types: ");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "Invalid enum parameter!");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "Valid rock types: ");
 			Object[] types = typeRegistry.getEnumConstants();
 			for (int i = 0; i < types.length; i++)
-				System.out.println("\t"+((Enum)types[i]).name());
-			System.out.println("");
-			System.out.println("Valid rock shapes: ");
+				cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "\t"+((Enum)types[i]).name());
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "Valid rock shapes: ");
 			Object[] shapes = shapeRegistry.getEnumConstants();
 			for (int i = 0; i < shapes.length; i++)
-				System.out.println("\t"+((Enum)shapes[i]).name());
+				cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "\t"+((Enum)shapes[i]).name());
 			e.printStackTrace();
 			return null;
 		}
 		catch (Exception e) {
-			System.out.println("GeoStrata rock type "+type+" and shape "+shape+" threw exception while fetching!");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "GeoStrata rock type "+type+" and shape "+shape+" threw exception while fetching!");
 			e.printStackTrace();
 			return null;
 		}
@@ -113,21 +97,21 @@ public class RockGetter {
 			return (Block)getBlockByShape.invoke(rtype, rshape);
 		}
 		catch (IllegalArgumentException e) {
-			System.out.println("Invalid enum parameter!");
-			System.out.println("Valid rock types: ");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "Invalid enum parameter!");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "Valid rock types: ");
 			Object[] types = typeRegistry.getEnumConstants();
 			for (int i = 0; i < types.length; i++)
-				System.out.println("\t"+((Enum)types[i]).name());
-			System.out.println("");
-			System.out.println("Valid rock shapes: ");
+				cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "\t"+((Enum)types[i]).name());
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "Valid rock shapes: ");
 			Object[] shapes = shapeRegistry.getEnumConstants();
 			for (int i = 0; i < shapes.length; i++)
-				System.out.println("\t"+((Enum)shapes[i]).name());
+				cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "\t"+((Enum)shapes[i]).name());
 			e.printStackTrace();
 			return null;
 		}
 		catch (Exception e) {
-			System.out.println("GeoStrata rock type "+type+" and shape "+shape+" threw exception while fetching!");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "GeoStrata rock type "+type+" and shape "+shape+" threw exception while fetching!");
 			e.printStackTrace();
 			return null;
 		}
@@ -148,11 +132,11 @@ public class RockGetter {
 			rtype = Enum.valueOf(typeRegistry, type.toUpperCase(java.util.Locale.ENGLISH));
 		}
 		catch (IllegalArgumentException e) {
-			System.out.println("Invalid rock type "+type+"!");
-			System.out.println("Valid rock types: ");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "Invalid rock type "+type+"!");
+			cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "Valid rock types: ");
 			Object[] types = typeRegistry.getEnumConstants();
 			for (int i = 0; i < types.length; i++)
-				System.out.println("\t"+((Enum)types[i]).name());
+				cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "\t"+((Enum)types[i]).name());
 			return null;
 		}
 		Object[] shapes = shapeRegistry.getEnumConstants();
@@ -163,7 +147,7 @@ public class RockGetter {
 					c.add(b);
 			}
 			catch (Exception e) {
-				System.out.println("GeoStrata rock type "+type+" and shape "+shapes[i]+" threw exception while fetching its blocks!");
+				cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, "GeoStrata rock type "+type+" and shape "+shapes[i]+" threw exception while fetching its blocks!");
 				e.printStackTrace();
 				return null;
 			}

@@ -11,6 +11,7 @@ package Reika.GeoStrata.Blocks;
 
 import java.awt.Color;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -96,6 +97,18 @@ public class BlockGeoSlab extends BlockSlab {
 			ItemStack is = new ItemStack(this, 1, ItemBlockAnyGeoVariant.getStack(te.getRockType(), te.getRockShape()));
 			ReikaItemHelper.dropItem(world, x+0.5, y+0.5, z+0.5, is);
 		}
+	}
+
+	@Override
+	public int tickRate(World p_149738_1_)
+	{
+		return 800;
+	}
+
+	@Override
+	public boolean isReplaceableOreGen(World world, int x, int y, int z, Block target)
+	{
+		return true;
 	}
 
 }

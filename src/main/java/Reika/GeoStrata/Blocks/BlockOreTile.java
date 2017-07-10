@@ -401,4 +401,16 @@ public class BlockOreTile extends Block implements SpecialOreBlock {
 		return this.getSilkTouchVersion(world, x, y, z);
 	}
 
+	@Override
+	public int tickRate(World p_149738_1_)
+	{
+		return 800;
+	}
+
+	@Override
+	public boolean isReplaceableOreGen(World world, int x, int y, int z, Block target)
+	{
+		return true;
+	}
+
 }

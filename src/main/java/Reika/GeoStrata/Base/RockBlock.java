@@ -270,4 +270,16 @@ public abstract class RockBlock extends Block implements /*Laserable, */IWrappab
 		return tag;
 	}
 
+	@Override
+	public int tickRate(World p_149738_1_)
+	{
+		return 20;
+	}
+
+	@Override
+	public boolean isReplaceableOreGen(World world, int x, int y, int z, Block target)
+	{
+		return true;
+	}
+
 }

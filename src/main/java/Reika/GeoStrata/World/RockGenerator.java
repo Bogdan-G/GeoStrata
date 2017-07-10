@@ -26,9 +26,9 @@ public class RockGenerator implements RetroactiveGenerator {
 	private static final int VEIN_SIZE = 32;
 	private static final int REPLACE_PERCENT = 15;
 
-	public static final RockGenerator instance = new RockGenerator();
-
 	private final int oreControl;
+	
+	public static final RockGenerator instance = new RockGenerator();
 
 	private RockGenerator() {
 		oreControl = GeoOptions.GEOORE.getValue();
